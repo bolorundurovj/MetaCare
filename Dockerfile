@@ -11,4 +11,7 @@ COPY package.json yarn.* ./
 RUN yarn --pure-lockfile
 COPY . .
 
+RUN yarn drop:db
+RUN yarn seed:db
+
 CMD ["yarn", "start"]

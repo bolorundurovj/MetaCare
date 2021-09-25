@@ -20,28 +20,6 @@ services:
     depends_on:
       - db
 
-  migrations:
-    build: .
-    restart: on-failure
-    env_file: ./.env
-    environment:
-      - NODE_ENV=docker
-      - PORT=$PORT
-      - SQL_HOST=db
-      - SQL_PORT=3306
-      - SQL_DBNAME=$SQL_DBNAME
-      - SQL_USERNAME=$SQL_USERNAME
-      - SQL_PASSWORD=$SQL_PASSWORD
-    depends_on:
-      - db
-      - api
-    links:
-      - api
-    volumes:
-      - .:/app
-      - /app/node_modules
-    command: "yarn seed:db"
-
   db:
     image: mysql
     container_name: metacare-db
