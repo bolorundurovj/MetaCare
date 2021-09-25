@@ -9,7 +9,11 @@ if (!isProduction) {
 
 const config = {
   database: {
-    url: process.env.MONGO_URL
+    host: process.env.SQL_HOST,
+    port: process.env.SQL_PORT,
+    name: process.env.SQL_DBNAME,
+    user: process.env.SQL_USERNAME,
+    password: process.env.SQL_PASSWORD
   },
   environment: env,
   swapi: process.env.SWAPI_URL,
