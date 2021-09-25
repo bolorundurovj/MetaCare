@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "API documentation for movies list",
   "title": "MetaCare API",
-  "url": "localhost:3000/api",
+  "url": "https://metacare-task.herokuapp.com/api",
   "sampleUrl": false,
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2021-09-25T19:42:02.657Z",
+    "time": "2021-09-25T20:30:51.642Z",
     "url": "https://apidocjs.com",
     "version": "0.29.0"
   }
