@@ -1,0 +1,63 @@
+version: "3.7"
+services:
+  api:
+    build: .
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - NODE_ENV=docker
+      - PORT=$PORT
+      - SQL_HOST=db
+      - SQL_PORT=3306
+      - SQL_DBNAME=$SQL_DBNAME
+      - SQL_USERNAME=$SQL_USERNAME
+      - SQL_PASSWORD=$SQL_PASSWORD
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  migrations:
+    build: .
+    restart: on-failure
+    env_file: ./.env
+    environment:
+      - NODE_ENV=docker
+      - PORT=$PORT
+      - SQL_HOST=db
+      - SQL_PORT=3306
+      - SQL_DBNAME=$SQL_DBNAME
+      - SQL_USERNAME=$SQL_USERNAME
+      - SQL_PASSWORD=$SQL_PASSWORD
+    depends_on:
+      - db
+      - api
+    links:
+      - api
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: "yarn seed:db"
+
+  db:
+    image: mysql
+    container_name: metacare-db
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      MYSQL_DATABASE: $SQL_DBNAME
+      MYSQL_ROOT_PASSWORD: RootPassword123
+      MYSQL_USER: $SQL_USERNAME
+      MYSQL_PASSWORD: $SQL_PASSWORD
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+
+volumes: 
+  db:
