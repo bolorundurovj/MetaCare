@@ -2,11 +2,21 @@ const Logger = require("../config/logger");
 const { Sequelize } = require("sequelize");
 const Config = require("../config");
 
-const sequelize = new Sequelize(Config.database.name, Config.database.user, Config.database.password, {
-  host: Config.database.host,
-  dialect: "mysql",
-  logging: (msg) => Logger.log(msg),
-});
+let sequelize;
+if (process.env.JAWSDB_URL) {
+  sequelize = new Sequelize(process.env.JAWSDB_URL);
+} else {
+  sequelize = new Sequelize(
+    Config.database.name,
+    Config.database.user,
+    Config.database.password,
+    {
+      host: Config.database.host,
+      dialect: "mysql",
+      logging: (msg) => Logger.log(msg),
+    }
+  );
+}
 
 const db = {};
 
