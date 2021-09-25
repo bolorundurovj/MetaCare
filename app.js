@@ -4,7 +4,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const db = require("./models");
@@ -28,9 +27,6 @@ const bootstrapApp = async () => {
   app.use(cors());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-
-  //Set security headers
-  app.use(helmet());
 
   //Prevent XSS attacks
   app.use(xss());
