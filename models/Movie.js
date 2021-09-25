@@ -1,47 +1,28 @@
-const uniqueValidator = require('mongoose-unique-validator');
-const { Schema, model } = require('mongoose');
+module.exports = (sequelize, Sequelize) => {
+  const Movie = sequelize.define("movie", {
+    title: {
+      type: Sequelize.STRING,
+    },
 
-const movieSchema = new Schema({
-  title: {
-    type: String,
-    unique: false,
-    trim: true,
-    required: true
-  },
-  episodeId: {
-    type: Number,
-  },
-  openingCrawl: {
-    type: String,
-    required: true
-  },
-  director: {
-    type: String,
-    required: true
-  },
-  producers: {
-    type: String
-  },
-  releaseDate: {
-    type: Date,
-    required: true
-  },
-  referenceUrl: {
-    type: String,
-    required: true
-  },
-  characters: [{
-    type: String,
-    ref: 'Character'
-  }],
-  comments: [{
-    type: String,
-    ref: 'Comment'
-  }],
-}, {
-  timestamps: true
-});
+    episodeId: {
+      type: Sequelize.INTEGER,
+    },  
+    openingCrawl: {
+      type: Sequelize.STRING,
+    },
+    director: {
+      type: Sequelize.STRING,
+    },
+    producers: {
+      type: Sequelize.STRING,
+    },
+    releaseDate: {
+      type: Sequelize.DATE,
+    },
+    referenceUrl: {
+      type: Sequelize.STRING,
+    },
+  });
 
-movieSchema.plugin(uniqueValidator);
-
-module.exports = model('Movie', movieSchema);
+  return Movie;
+};

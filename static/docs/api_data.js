@@ -23,9 +23,180 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "./static/docs/main.js",
-    "group": "/home/bolorundurovb/Documents/MetaCare_Task/static/docs/main.js",
-    "groupTitle": "/home/bolorundurovb/Documents/MetaCare_Task/static/docs/main.js",
+    "group": "/home/bolorundurovb/Documents/MetaCare/static/docs/main.js",
+    "groupTitle": "/home/bolorundurovb/Documents/MetaCare/static/docs/main.js",
     "name": ""
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/characters",
+    "title": "Get All Characters",
+    "version": "1.0.0",
+    "name": "Get_All_Characters",
+    "group": "Character",
+    "description": "<p>Get all characters</p>",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response Example:",
+          "content": " HTTP/1.1 200 OK\n{\n\"data\": {\n    \"_matches\": 32,\n    \"_totalHeight\": {\n        \"cm\": 5308,\n        \"feet\": 174.14698162729658\n    },\n    \"characters\": [\n        {\n            \"id\": 5,\n            \"name\": \"Leia Organa\",\n            \"heightMetric\": 150,\n            \"heightImperial\": 4.9215,\n            \"weight\": 49,\n            \"hairColor\": \"brown\",\n            \"skinColor\": \"light\",\n            \"eyeColor\": \"brown\",\n            \"gender\": \"female\",\n            \"birthYear\": \"19BBY\"\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Beru Whitesun lars\",\n            \"heightMetric\": 165,\n            \"heightImperial\": 5.41365,\n            \"weight\": 75,\n            \"hairColor\": \"brown\",\n            \"skinColor\": \"light\",\n            \"eyeColor\": \"blue\",\n            \"gender\": \"female\",\n            \"birthYear\": \"47BBY\"\n        },\n    ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Server Error\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./controllers/CharacterCtrl.js",
+    "groupTitle": "Character"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/characters/:characterId",
+    "title": "Get Single Character",
+    "version": "1.0.0",
+    "name": "Get_Single_Character",
+    "group": "Character",
+    "description": "<p>Get single character details</p>",
+    "parameter": {
+      "fields": {
+        "Url Parameters": [
+          {
+            "group": "Url Parameters",
+            "type": "String",
+            "optional": false,
+            "field": "characterId",
+            "description": "<p>Character unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response Example:",
+          "content": " HTTP/1.1 200 OK\n  {\n   \"data\": {\n       \"character\": {\n           \"id\": 1,\n           \"name\": \"Luke Skywalker\",\n           \"heightMetric\": 172,\n           \"heightImperial\": 5.64332,\n           \"weight\": 77,\n           \"hairColor\": \"blond\",\n           \"skinColor\": \"fair\",\n           \"eyeColor\": \"blue\",\n           \"gender\": \"male\",\n           \"birthYear\": \"19BBY\"\n       }\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Server Error\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./controllers/CharacterCtrl.js",
+    "groupTitle": "Character"
+  },
+  {
+    "type": "post",
+    "url": "/api/v1/movies/:movieId/comments",
+    "title": "Add Comments To A Movie",
+    "version": "1.0.0",
+    "name": "Add_Comments_To_A_Movie",
+    "group": "Movie",
+    "description": "<p>Add comments to a movie</p>",
+    "parameter": {
+      "fields": {
+        "Url Parameters": [
+          {
+            "group": "Url Parameters",
+            "type": "String",
+            "optional": false,
+            "field": "movieId",
+            "description": "<p>Movie unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "body": [
+      {
+        "group": "Body",
+        "type": "String",
+        "optional": false,
+        "field": "comment",
+        "description": ""
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response Example:",
+          "content": " HTTP/1.1 201 Created\n  {\n   \"data\": {\n       \"comment\": {\n           \"id\": 1,\n           \"comment\": \"duced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\",\n           \"movieId\": \"1\",\n           \"ipAddress\": \"::1\",\n           \"updatedAt\": \"2021-09-25T10:08:06.947Z\",\n           \"createdAt\": \"2021-09-25T10:08:06.947Z\"\n       }\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Server Error\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./controllers/MovieCtrl.js",
+    "groupTitle": "Movie"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/movies",
+    "title": "Get All Movies",
+    "version": "1.0.0",
+    "name": "Get_All_Movies",
+    "group": "Movie",
+    "description": "<p>Get all movies</p>",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response Example:",
+          "content": " HTTP/1.1 200 OK\n {\n   \"data\": {\n     \"movies\": [\n         {\n             \"id\": 1,\n             \"title\": \"A New Hope\",\n             \"episodeId\": 4,\n             \"openingCrawl\": \"It is a period of civil war.\\r\\nRebel spaceships, st\",\n             \"director\": \"George Lucas\",\n             \"producers\": [\n                 \"Gary Kurtz\",\n                 \" Rick McCallum\"\n             ],\n             \"releaseDate\": \"1977-05-25T00:00:00.000Z\",\n             \"comments\": 0,\n             \"characters\": 18\n         },\n         {\n             \"id\": 2,\n             \"title\": \"The Empire Strikes Back\",\n             \"episodeId\": 5,\n             \"openingCrawl\": \"It is a dark time for the\\r\\nRebellion. Although the\",\n             \"director\": \"Irvin Kershner\",\n             \"producers\": [\n                 \"Gary Kurtz\",\n                 \" Rick McCallum\"\n             ],\n             \"releaseDate\": \"1980-05-17T00:00:00.000Z\",\n             \"comments\": 0,\n             \"characters\": 16\n         },\n       ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Server Error\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./controllers/MovieCtrl.js",
+    "groupTitle": "Movie"
   },
   {
     "type": "get",
@@ -47,6 +218,159 @@ define({ "api": [
           }
         ]
       }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response Example:",
+          "content": " HTTP/1.1 200 OK\n  {\n   \"data\": {\n       \"movie\": {\n           \"id\": 1,\n           \"title\": \"A New Hope\",\n           \"episodeId\": 4,\n           \"openingCrawl\": \"It is a period of civil war.\\r\\nRebel spaceships, st\",\n           \"director\": \"George Lucas\",\n           \"producers\": [\n               \"Gary Kurtz\",\n               \" Rick McCallum\"\n           ],\n           \"releaseDate\": \"1977-05-25T00:00:00.000Z\",\n           \"comments\": 0,\n           \"characters\": 18\n       }\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Server Error\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./controllers/MovieCtrl.js",
+    "groupTitle": "Movie"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/movies/:movieId/characters",
+    "title": "Get Single Movie Characters",
+    "version": "1.0.0",
+    "name": "Get_Single_Movie_Characters",
+    "group": "Movie",
+    "description": "<p>Get single movie characters</p>",
+    "parameter": {
+      "fields": {
+        "Url Parameters": [
+          {
+            "group": "Url Parameters",
+            "type": "String",
+            "optional": false,
+            "field": "movieId",
+            "description": "<p>Movie unique ID.</p>"
+          }
+        ],
+        "Query Parameters": [
+          {
+            "group": "Query Parameters",
+            "type": "string",
+            "allowedValues": [
+              "\"name\"",
+              "\"gender\"",
+              "\"height\""
+            ],
+            "optional": false,
+            "field": "sortKey",
+            "description": ""
+          },
+          {
+            "group": "Query Parameters",
+            "type": "string",
+            "allowedValues": [
+              "\"asc\"",
+              "\"desc\""
+            ],
+            "optional": false,
+            "field": "sortValue",
+            "description": ""
+          },
+          {
+            "group": "Query Parameters",
+            "type": "string",
+            "allowedValues": [
+              "\"male\"",
+              "\"female\""
+            ],
+            "optional": false,
+            "field": "gender",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response Example:",
+          "content": " HTTP/1.1 200 OK\n  {\n   \"data\": {\n       \"_matches\": 2,\n       \"_totalHeight\": {\n           \"cm\": 315,\n           \"feet\": 10.334645669291339\n       },\n       \"characters\": [\n           {\n               \"id\": 2,\n               \"name\": \"Leia Organa\",\n               \"heightMetric\": 150,\n               \"heightImperial\": 4.9215,\n               \"weight\": 49,\n               \"hairColor\": \"brown\",\n               \"skinColor\": \"light\",\n               \"eyeColor\": \"brown\",\n               \"gender\": \"female\",\n               \"birthYear\": \"19BBY\"\n           },\n           {\n               \"id\": 3,\n               \"name\": \"Beru Whitesun lars\",\n               \"heightMetric\": 165,\n               \"heightImperial\": 5.41365,\n               \"weight\": 75,\n               \"hairColor\": \"brown\",\n               \"skinColor\": \"light\",\n               \"eyeColor\": \"blue\",\n               \"gender\": \"female\",\n               \"birthYear\": \"47BBY\"\n           }\n       ]\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Server Error\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./controllers/MovieCtrl.js",
+    "groupTitle": "Movie"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/movies/:movieId/comments",
+    "title": "Get Single Movie Comments",
+    "version": "1.0.0",
+    "name": "Get_Single_Movie_Comments",
+    "group": "Movie",
+    "description": "<p>Get single movie comments</p>",
+    "parameter": {
+      "fields": {
+        "Url Parameters": [
+          {
+            "group": "Url Parameters",
+            "type": "String",
+            "optional": false,
+            "field": "movieId",
+            "description": "<p>Movie unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response Example:",
+          "content": " HTTP/1.1 200 OK\n  {\n   \"data\": {\n       \"comments\": [\n           {\n               \"id\": 1,\n               \"comment\": \"duced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\",\n               \"movieId\": 1,\n               \"ipAddress\": \"::1\",\n               \"createdAt\": \"2021-09-25T10:08:06.000Z\",\n               \"updatedAt\": \"2021-09-25T10:08:06.000Z\"\n           }\n       ]\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Server Error\n{\n  \"message\": \"Error Message\"\n}",
+          "type": "json"
+        }
+      ]
     },
     "filename": "./controllers/MovieCtrl.js",
     "groupTitle": "Movie"

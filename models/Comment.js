@@ -1,17 +1,15 @@
-const { Schema, model } = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+module.exports = (sequelize, Sequelize) => {
+  const Comment = sequelize.define("comment", {
+    comment: {
+      type: Sequelize.STRING,
+    },
+    movieId: {
+      type: Sequelize.INTEGER,
+    },
+    ipAddress: {
+      type: Sequelize.STRING,
+    }
+  });
 
-const commentSchema = new Schema({
-  comment: {
-    type: String,
-    unique: true,
-    trim: true,
-    required: true
-  },
-}, {
-  timestamps: true
-});
-
-commentSchema.plugin(uniqueValidator);
-
-module.exports = model('Comment', commentSchema);
+  return Comment;
+};

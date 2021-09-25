@@ -1,42 +1,34 @@
-const { Schema, model } = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+module.exports = (sequelize, Sequelize) => {
+  const Character = sequelize.define("character", {
+    name: {
+      type: Sequelize.STRING
+    },
+    height: {
+      type: Sequelize.INTEGER,
+    },
+    weight: {
+      type: Sequelize.INTEGER,
+    },
+    hairColor: {
+      type: Sequelize.STRING
+    },
+    skinColor: {
+      type: Sequelize.STRING
+    },
+    eyeColor: {
+      type: Sequelize.STRING
+    },
+    gender: {
+      type: Sequelize.STRING
+    },
+    birthYear: {
+      type: Sequelize.STRING
+    },
+    referenceUrl: {
+      type: Sequelize.STRING,
+      required: true
+    }
+  });
 
-const characterSchema = new Schema({
-  name: {
-    type: String,
-    unique: true,
-    trim: true,
-    required: true
-  },
-  height: {
-    type: Number,
-  },
-  weight: {
-    type: Number,
-  },
-  hairColor: {
-    type: String
-  },
-  skinColor: {
-    type: String
-  },
-  eyeColor: {
-    type: String
-  },
-  gender: {
-    type: String
-  },
-  birthYear: {
-    type: String
-  },
-  referenceUrl: {
-    type: String,
-    required: true
-  },
-}, {
-  timestamps: true
-});
-
-characterSchema.plugin(uniqueValidator);
-
-module.exports = model('Character', characterSchema);
+  return Character;
+};
