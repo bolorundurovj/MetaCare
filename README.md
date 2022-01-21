@@ -1,4 +1,4 @@
-# MetaCare
+# MovieAPI
 
 Steps to run this project:
 
